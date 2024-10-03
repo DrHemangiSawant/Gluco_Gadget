@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Sugar Tracker - Filter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 style="text-align: center; font-weight: bold; font-family: Georgia, 'Times New Roman', Times, serif;">
+            Filter Your Results
+        </h3>
+        <div class="row">
+            <div class="col s12 m4">
+                <form id="filter-form">
+                    <div class="input-field">
+                        <input type="number" id="min_pre_prandial" name="min_pre_prandial" step="10">
+                        <label for="min_pre_prandial">Min Pre-Prandial Value</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="max_pre_prandial" name="max_pre_prandial" step="10">
+                        <label for="max_pre_prandial">Max Pre-Prandial Value</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="min_post_prandial" name="min_post_prandial" step="10">
+                        <label for="min_post_prandial">Min Post-Prandial Value</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="max_post_prandial" name="max_post_prandial" step="10">
+                        <label for="max_post_prandial">Max Post-Prandial Value</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="start_date" name="start_date" class="datepicker">
+                        <label for="start_date">Start Date</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="end_date" name="end_date" class="datepicker">
+                        <label for="end_date">End Date</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="specific_date" name="specific_date" class="datepicker">
+                        <label for="specific_date">Specific Date</label>
+                    </div>
+                    <button type="button" class="btn waves-effect waves-light orange" onclick="updateGraph()">View Graph</button>
+                </form>
+            </div>
+            <div class="col s12 m8">
+                <div id="graph">{{ graph_html|safe }}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var date_elems = document.querySelectorAll('.datepicker');
+            var date_instances = M.Datepicker.init(date_elems, {format: 'yyyy-mm-dd'});
+        });
+
+        function updateGraph() {
+            var formData = $('#filter-form').serialize();
+            $.ajax({
+                url: '/update_graph',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#graph').html(response.graph_html);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
