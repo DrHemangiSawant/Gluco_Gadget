@@ -16,6 +16,7 @@ This project leverages a range of technologies, including:
 - Matplotlib / Seaborn: For creating visually appealing and informative graphs.
 - Flask: A lightweight web framework used to build the dashboard.
 - HTML/CSS & JavaScript: For front-end development, ensuring a responsive and interactive user experience.
+- SQL: For database management
   
 Purpose:
 Gluco Gadget aims to address the challenges faced by individuals managing diabetes by providing a reliable tool for tracking glucose levels. By facilitating easy access to data and insights, this dashboard seeks to promote proactive health management and improve overall well-being.
