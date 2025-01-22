@@ -8,9 +8,7 @@ Key Features:
 - Export Functionality: Gluco Gadget allows users to export their data in various formats, making it easy to share with healthcare providers or for further analysis.
 - User-Friendly Interface: Designed with the user in mind, the interface is simple to navigate, making it accessible for individuals of all technical backgrounds.
 
-Technologies Used:
-This project leverages a range of technologies, including:
-
+Tools Used:
 - Python: For backend processing and data management.
 - Pandas: For data manipulation and analysis.
 - Matplotlib / Seaborn: For creating visually appealing and informative graphs.
